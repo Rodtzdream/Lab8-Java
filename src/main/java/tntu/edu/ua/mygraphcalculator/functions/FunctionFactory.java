@@ -24,7 +24,7 @@ public class FunctionFactory {
                 func = x -> A * x * x + B * x + C;
                 break;
             case "hyperbola":
-                func = x -> A / x;
+                func = x -> B * Math.sqrt((x * x / (A * A)) - 1);
                 break;
             case "ellipse":
                 return createParametricSeries("Ellipse", t -> A * Math.cos(t), t -> B * Math.sin(t), start, end);

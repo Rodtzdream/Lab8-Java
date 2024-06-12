@@ -37,8 +37,8 @@ public class FunctionPlotter extends ApplicationFrame {
 
         JFreeChart chart = ChartFactory.createXYLineChart(
                 "Графіки функцій",
-                "X",
-                "Y",
+                "X-axis",
+                "Y-axis",
                 dataset,
                 PlotOrientation.VERTICAL,
                 true, true, false);
@@ -65,7 +65,9 @@ public class FunctionPlotter extends ApplicationFrame {
         rangeAxis.setVisible(true);
 
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new Dimension(800, 600));
+        chartPanel.setPreferredSize(new Dimension(700, 700));
+        chartPanel.setMouseWheelEnabled(true); // Увімкнення масштабування колесом миші
+
         chartPanel.addMouseMotionListener(new MouseMotionListener() {
             @Override
             public void mouseDragged(MouseEvent e) {}
@@ -115,8 +117,8 @@ public class FunctionPlotter extends ApplicationFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String function = JOptionPane.showInputDialog("Enter function type (exp, log):");
-                double A = Double.parseDouble(JOptionPane.showInputDialog("Enter value for A:"));
-                double B = Double.parseDouble(JOptionPane.showInputDialog("Enter value for B:"));
+                double A = Double.parseDouble(JOptionPane.showInputDialog("Enter value for A: (exp: multiplier, log: multiplier of logarithm"));
+                double B = Double.parseDouble(JOptionPane.showInputDialog("Enter value for B: (exp: base, log: base of logarithm"));
                 double start = Double.parseDouble(JOptionPane.showInputDialog("Enter start value of range:"));
                 double end = Double.parseDouble(JOptionPane.showInputDialog("Enter end value of range:"));
                 addFunction(FunctionFactory.createExpLogFunction(function, A, B, start, end));
@@ -131,6 +133,7 @@ public class FunctionPlotter extends ApplicationFrame {
     }
 
     private void addFunction(XYSeries series) {
+        series.setKey(series.getKey() + " " + seriesList.size());
         dataset.addSeries(series);
         seriesList.add(series);
     }
