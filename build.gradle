@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.jfree:jfreechart:1.5.3'
+    implementation 'org.jfree:jcommon:1.0.24'
+    implementation 'org.jfree:jfreesvg:3.3'
+}
+
+application {
+    mainClassName = 'tntu.edu.ua.mygraphcalculator.ui.FunctionPlotter'
+}
