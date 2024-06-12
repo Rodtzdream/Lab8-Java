@@ -4,6 +4,7 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.NumberTickUnit;
 import org.jfree.chart.plot.ValueMarker;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
@@ -79,6 +80,12 @@ public class FunctionPlotter extends ApplicationFrame {
                 double chartX = plot.getDomainAxis().java2DToValue(x, chartPanel.getScreenDataArea(), plot.getDomainAxisEdge());
                 double chartY = plot.getRangeAxis().java2DToValue(y, chartPanel.getScreenDataArea(), plot.getRangeAxisEdge());
                 functionChecker.checkIntersection(chartX, chartY, seriesList, intersectionLabel);
+
+                double domainLength = plot.getDomainAxis().getRange().getLength();
+                double rangeLength = plot.getRangeAxis().getRange().getLength();
+
+                ((NumberAxis) plot.getDomainAxis()).setTickUnit(new NumberTickUnit(domainLength / 10));
+                ((NumberAxis) plot.getRangeAxis()).setTickUnit(new NumberTickUnit(rangeLength / 10));
             }
         });
         setContentPane(chartPanel);

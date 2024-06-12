@@ -49,7 +49,10 @@ public class FunctionFactory {
         XYSeries series = new XYSeries(name);
         for (double x = start; x <= end; x += 0.01) {
             try {
-                series.add(x, func.apply(x));
+                double y = func.apply(x);
+                if (y >= start && y <= end) {
+                    series.add(x, y);
+                }
             } catch (Exception e) {
                 System.err.println("Error calculating function value at x=" + x + ": " + e.getMessage());
             }
