@@ -26,13 +26,38 @@ import java.util.List;
 import tntu.edu.ua.mygraphcalculator.functions.FunctionFactory;
 import tntu.edu.ua.mygraphcalculator.functions.FunctionChecker;
 
+/**
+ * Клас FunctionPlotter використовується для створення графіків різних функцій.
+ * Він включає в себе можливість додавання тригонометричних функцій, функцій другого порядку та експоненціальних/логарифмічних функцій.
+ * Також він має можливість відображення точок перетину функцій.
+ */
 public class FunctionPlotter extends ApplicationFrame {
 
+    /**
+     * Колекція даних для графіків.
+     */
     private final XYSeriesCollection dataset = new XYSeriesCollection();
+
+    /**
+     * Список серій даних для графіків.
+     */
     private final List<XYSeries> seriesList = new ArrayList<>();
+
+    /**
+     * Мітка для відображення точок перетину.
+     */
     private final JLabel intersectionLabel = new JLabel("Intersection: None");
+
+    /**
+     * Об'єкт для перевірки перетину функцій.
+     */
     private final FunctionChecker functionChecker = new FunctionChecker();
 
+    /**
+     * Конструктор класу FunctionPlotter.
+     *
+     * @param title Назва вікна додатку.
+     */
     public FunctionPlotter(String title) {
         super(title);
 
@@ -71,7 +96,8 @@ public class FunctionPlotter extends ApplicationFrame {
 
         chartPanel.addMouseMotionListener(new MouseMotionListener() {
             @Override
-            public void mouseDragged(MouseEvent e) {}
+            public void mouseDragged(MouseEvent e) {
+            }
 
             @Override
             public void mouseMoved(MouseEvent e) {
@@ -150,12 +176,22 @@ public class FunctionPlotter extends ApplicationFrame {
         add(controlPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Метод для додавання нової функції до графіку.
+     *
+     * @param series Серія даних нової функції.
+     */
     private void addFunction(XYSeries series) {
         series.setKey(series.getKey() + " " + seriesList.size());
         dataset.addSeries(series);
         seriesList.add(series);
     }
 
+    /**
+     * Головний метод для запуску додатку.
+     *
+     * @param args Аргументи командного рядка.
+     */
     public static void main(String[] args) {
         FunctionPlotter example = new FunctionPlotter("Function Plotter");
         example.pack();

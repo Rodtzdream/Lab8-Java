@@ -1,12 +1,22 @@
 package tntu.edu.ua.mygraphcalculator.functions;
 
 import org.jfree.data.xy.XYSeries;
-
 import javax.swing.*;
 import java.util.List;
 
+/**
+ * Клас FunctionChecker використовується для перевірки перетину функцій на графіку.
+ * Він включає в себе метод для перевірки перетину серій даних, які представляють функції.
+ */
 public class FunctionChecker {
 
+    /**
+     * Перевіряє перетин серій даних на графіку та відображає результат на мітці.
+     *
+     * @param chartX, chartY Координати точки на графіку, для якої виконується перевірка.
+     * @param seriesList Список серій даних, які представляють функції на графіку.
+     * @param intersectionLabel Мітка, на якій відображається результат перевірки.
+     */
     public void checkIntersection(double chartX, double chartY, List<XYSeries> seriesList, JLabel intersectionLabel) {
         boolean intersectionFound = false;
         for (int i = 0; i < seriesList.size(); i++) {
