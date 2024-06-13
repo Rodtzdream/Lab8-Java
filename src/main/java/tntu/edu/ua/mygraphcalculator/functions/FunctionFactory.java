@@ -50,9 +50,7 @@ public class FunctionFactory {
         for (double x = start; x <= end; x += 0.01) {
             try {
                 double y = func.apply(x);
-                if (y >= start && y <= end) {
-                    series.add(x, y);
-                }
+                series.add(x, y);
             } catch (Exception e) {
                 System.err.println("Error calculating function value at x=" + x + ": " + e.getMessage());
             }

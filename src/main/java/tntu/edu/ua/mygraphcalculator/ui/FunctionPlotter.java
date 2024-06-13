@@ -66,7 +66,7 @@ public class FunctionPlotter extends ApplicationFrame {
         rangeAxis.setVisible(true);
 
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new Dimension(700, 700));
+        chartPanel.setPreferredSize(new Dimension(750, 750));
         chartPanel.setMouseWheelEnabled(true); // Увімкнення масштабування колесом миші
 
         chartPanel.addMouseMotionListener(new MouseMotionListener() {
@@ -132,9 +132,20 @@ public class FunctionPlotter extends ApplicationFrame {
             }
         });
 
+        JButton clearButton = new JButton("Clear");
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dataset.removeAllSeries();
+                seriesList.clear();
+                intersectionLabel.setText("Intersection: None");
+            }
+        });
+
         controlPanel.add(addTrigButton);
         controlPanel.add(addSecondOrderButton);
         controlPanel.add(addExpLogButton);
+        controlPanel.add(clearButton);
         controlPanel.add(intersectionLabel);
         add(controlPanel, BorderLayout.SOUTH);
     }
